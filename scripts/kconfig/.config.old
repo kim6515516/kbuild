@@ -1,0 +1,6 @@
+#
+# Automatically generated make config: don't edit
+# Linux Kernel Configuration
+# Fri Jan 16 14:19:00 2015
+#
+CONFIG_STACKTRACE_SUPPORT=y

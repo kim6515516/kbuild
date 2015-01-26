@@ -1,0 +1,5 @@
+
+config STACKTRACE_SUPPORT
+        bool
+        default y
+
