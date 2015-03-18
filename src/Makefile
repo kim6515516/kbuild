@@ -2,13 +2,11 @@
 
 TARGET	:= car
 TOPDIR	:= $(shell /bin/pwd)
-SUBDIRS	:= src
+SUBDIRS	:= main engine wheel
 
 ##############################################
 
-#srctree	:= /home/kim6515516/git/kbuild
-#srctree := $(notdir $(patsubst %/,%,$(dir $(mkfile_path))))
-srctree := $(dir $(abspath $(lastword $(MAKEFILE_LIST))))
+srctree	:= /home/kim6515516/sampleMakefile
 export srctree objtree
 
 CONFIG_SHELL := $(shell if [ -x "$$BASH" ]; then echo $$BASH; \
@@ -23,25 +21,12 @@ export CONFIG_SHELL HOSTCC HOSTCXX HOSTCFLAGS HOSTCXXFLAGS
 
 ################################################
 
-#include $(TOPDIR)/Config.mk
+include $(TOPDIR)/Config.mk
 
-#all : compile $(OBJS)
-#	$(CC) $(OBJS) $(addsuffix /built-in.o, $(SUBDIRS)) -o $(TARGET)
+all : compile $(OBJS)
+	$(CC) $(OBJS) $(addsuffix /built-in.o, $(SUBDIRS)) -o $(TARGET)
 
-all : compile
-
-#include $(TOPDIR)/Rules.mk
-compile:
-	@for dir in $(SUBDIRS); do \
-        make -C $$dir || exit $?; \
-        done
-
-
-clean:
-	@for dir in $(SUBDIRS); do \
-        make -C $$dir clean; \
-        done
-	rm -rf *.o *.i *.s $(TARGET)
+include $(TOPDIR)/Rules.mk
 
 
 
@@ -59,7 +44,7 @@ config: scripts_basic FORCE
 
 menuconfig: scripts_basic FORCE
 	$(Q)$(MAKE) $(build)=scripts/kconfig $@
-	sh tools/convert-config-to-header.sh .config src/include/generated.h
+	sh convert-config-to-header.sh .config ./include/generated.h
 
 mrproper-dirs      := $(addprefix _mrproper_,scripts)
 PHONY += $(mrproper-dirs) mrproper

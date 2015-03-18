@@ -12,7 +12,7 @@ xconfig: $(obj)/qconf
 gconfig: $(obj)/gconf
 
 menuconfig: $(obj)/mconf
-	$< $(Kconfig)
+	$< ./src/$(Kconfig)
 
 config: $(obj)/conf
 

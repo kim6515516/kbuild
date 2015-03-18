@@ -1,0 +1,11 @@
+#
+# For a description of the syntax of this configuration file,
+# see Documentation/kbuild/kconfig-language.txt.
+#
+mainmenu "Kookmin/$ARCH $KERNELVERSION CAR Configuration"
+
+#config SRCARCH
+#	string
+#	option env="ARCH"
+
+source "src/arch/gia/Kconfig"

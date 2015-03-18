@@ -1,0 +1,40 @@
+config ARCH_GIA
+	bool
+	default y
+	select ARCH_SELECT
+	help
+	 The GIA series..
+
+
+#config WHEEL
+#	bool
+#	default y
+#	select WHEEL_GUMHO
+#	select WHEEL_MISSA
+
+menu "Engine management options"
+config ENGINE
+	bool "Engine support"
+choice
+	prompt "Engine type"
+	default ENGINE_SAMSUNG
+config ENGINE_SAMSUNG
+	bool "Samsung Engine"
+config ENGINE_APPLE
+	bool "Apple Engine"
+endchoice
+endmenu
+
+menu "Wheel management options"
+config WHEEL
+	bool "Wheel support"
+choice
+	prompt "Whell type"
+	default WHEEL_GUMHO
+config WHEEL_GUMHO
+	bool "Gumho Wheel"
+
+config WHEEL_MISSA
+	bool "Missa Wheel"
+endchoice
+endmenu
